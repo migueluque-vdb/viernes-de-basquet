@@ -1,1 +1,60 @@
+import random
+
+def jugar_adivinanza():
+    # Inicialización de variables
+    puntos_j1 = 0
+    puntos_j2 = 0
+    meta_puntos = 5
+    
+    print("--- ¡BIENVENIDOS AL DUELO DE NÚMEROS! ---")
+    print("Reglas: Adivina el número secreto entre 1 y 15.")
+    print(f"El primer jugador en llegar a {meta_puntos} puntos gana.\n")
+
+    # Bucle principal del juego
+    while puntos_j1 < meta_puntos and puntos_j2 < meta_puntos:
+        numero_secreto = random.randint(1, 15)
+        adivinado = False
+        
+        print(f"Marcador actual: Jugador 1: {puntos_j1} | Jugador 2: {puntos_j2}")
+        print("Se ha generado un nuevo número secreto...")
+
+        # Bucle de la ronda actual
+        while not adivinado:
+            # Turno del Jugador 1
+            try:
+                intento1 = int(input("Jugador 1, ¿cuál crees que es el número?: "))
+                if intento1 == numero_secreto:
+                    print("¡CORRECTO! Jugador 1 suma 1 punto.\n")
+                    puntos_j1 += 1
+                    adivinado = True
+                    break
+                else:
+                    print("Fallaste. Turno del Jugador 2.")
+            except ValueError:
+                print("Por favor, introduce un número válido.")
+
+            # Turno del Jugador 2
+            try:
+                intento2 = int(input("Jugador 2, ¿cuál crees que es el número?: "))
+                if intento2 == numero_secreto:
+                    print("¡CORRECTO! Jugador 2 suma 1 punto.\n")
+                    puntos_j2 += 1
+                    adivinado = True
+                    break
+                else:
+                    print("Fallaste. Turno del Jugador 1.")
+            except ValueError:
+                print("Por favor, introduce un número válido.")
+
+    # Anuncio del ganador final
+    print("================================")
+    if puntos_j1 == meta_puntos:
+        print("¡EL JUGADOR 1 ES EL GANADOR DEFINITIVO!")
+    else:
+        print("¡EL JUGADOR 2 ES EL GANADOR DEFINITIVO!")
+    print(f"Marcador final: {puntos_j1} - {puntos_j2}")
+    print("================================")
+
+if __name__ == "__main__":
+    jugar_adivinanza()
 
